@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base target="_self">
+    <title>Contact Me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#6366F1'
+                    }
+                }
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle all link clicks
+            document.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.href.startsWith('mailto:') || 
+                        this.href.startsWith('tel:') || 
+                        this.href.startsWith('https://')) {
+                        return; // Allow default behavior for external links
+                    }
+                    e.preventDefault();
+                    window.location = this.href;
+                });
+            });
+
+            // Dark mode toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            if (darkModeToggle) {
+                darkModeToggle.addEventListener('click', () => {
+                    document.documentElement.classList.toggle('dark');
+                    const isDark = document.documentElement.classList.contains('dark');
+                    darkModeToggle.innerHTML = isDark 
+                        ? '<i class="fas fa-sun"></i>'
+                        : '<i class="fas fa-moon"></i>';
+                });
+            }
+        });
+    </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+    <!-- Home Button (Top-Left Corner) -->
+    <div class="fixed top-8 left-8 z-50">
+        <a href="/" class="bg-primary dark:bg-secondary text-white p-4 rounded-full shadow-lg hover:bg-opacity-90 transition-all transform hover:scale-110">
+            <i class="fas fa-arrow-left text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- Header -->
+    <header class="p-4 flex justify-between items-center">
+        <!-- <h1 class="text-2xl font-bold text-primary dark:text-secondary">My Contact</h1> -->
+        <!-- <button id="darkModeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-800"> -->
+            <!-- <i class="fas fa-moon"></i> -->
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-md mx-auto p-8">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 text-center">
+            <h2 class="text-3xl font-bold mb-6">Get in Touch</h2>
+            
+            <!-- Contact Info -->
+            <div class="space-y-6">
+                <!-- Contact Item Template -->
+                <a href="tel:+1234567890" class="flex items-center justify-center gap-3 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors">
+                    <i class="fas fa-phone text-lg"></i>
+                    <span>+(233) 53-194-3980</span>
+                </a>
+                <a href="mailto:example@example.com" class="flex items-center justify-center gap-3 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors">
+                    <i class="fas fa-envelope text-lg"></i>
+                    <span>mathewdzadz@gmail.com</span>
+                </a>
+                <a href="https://maps.google.com" target="_blank" class="flex items-center justify-center gap-3 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors">
+                    <i class="fas fa-map-marker-alt text-lg"></i>
+                    <span>Lakeside, Accra</span>
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
