@@ -61,6 +61,7 @@
           </a>
         </div>
         <nav class="relative">
+<nav class="relative">
   <!-- Desktop Navigation -->
   <div class="hidden md:flex space-x-8">
     <a href="#about" class="text-sm font-medium hover:text-robot-blue transition-colors">About</a>
@@ -87,7 +88,7 @@
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="absolute top-12 left-0 w-full bg-white shadow-md p-4 space-y-4 md:hidden hidden">
+  <div id="mobile-menu" class="absolute top-16 left-0 w-full bg-white shadow-md p-4 space-y-4 md:hidden hidden">
     <a href="#about" class="block text-sm font-medium hover:text-robot-blue transition-colors">About</a>
     <a href="/gallery2.html" class="block text-sm font-medium hover:text-robot-blue transition-colors">Projects</a>
     <a href="#education" class="block text-sm font-medium hover:text-robot-blue transition-colors">Education</a>
@@ -106,6 +107,15 @@
     hamburger.classList.toggle('hidden');
     close.classList.toggle('hidden');
   }
+
+  // Auto-hide mobile menu when resizing to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) { // Tailwind's md breakpoint
+      document.getElementById('mobile-menu').classList.add('hidden');
+      document.getElementById('hamburger').classList.remove('hidden');
+      document.getElementById('close').classList.add('hidden');
+    }
+  });
 </script>
         <!-- <div class="hidden md:flex space-x-8">
           <a href="#about" class="text-sm font-medium hover:text-robot-blue transition-colors">About</a>
