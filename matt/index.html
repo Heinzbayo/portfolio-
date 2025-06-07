@@ -61,73 +61,67 @@
           </a>
         </div>
         <nav class="relative">
-
-
 <nav class="relative">
   <!-- Desktop Navigation -->
   <div class="hidden md:flex space-x-8">
     <!-- Desktop links here -->
   </div>
 
-  <!-- Mobile Hamburger (Right Side) -->
-  <div class="absolute right-4 top-1/2 transform -translate-y-1/2 md:hidden">
+  <!-- Mobile Hamburger (Centered Right) -->
+  <div class="absolute left-0 top-1/2 transform -translate-y-1/2 md:hidden">
     <button 
       id="menu-toggle" 
-      class="w-8 h-8 flex flex-col justify-center items-center group focus:outline-none"
-      aria-label="Toggle menu"
+      class="text-robot-blue focus:outline-none"
+      onclick="toggleMenu()"
     >
-      <!-- Animated Hamburger Icon -->
-      <span class="block w-6 h-0.5 bg-robot-blue rounded-full transition-all duration-300 transform group-[.active]:rotate-45 group-[.active]:translate-y-1.5"></span>
-      <span class="block w-6 h-0.5 bg-robot-blue rounded-full mt-1.5 transition-all duration-300 group-[.active]:opacity-0"></span>
-      <span class="block w-6 h-0.5 bg-robot-blue rounded-full mt-1.5 transition-all duration-300 transform group-[.active]:-rotate-45 group-[.active]:-translate-y-1.5"></span>
+      <svg id="hamburger" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      <svg id="close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
     </button>
   </div>
 
-  <!-- Mobile Menu (Compact centered overlay) -->
-  <div id="mobile-menu" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
-    <div class="bg-white rounded-lg shadow-xl p-6 w-11/12 max-w-xs transform scale-95 transition-transform duration-300">
-      <div class="space-y-4">
-        <a href="#about" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2 text-center" onclick="handleNavClick()">About</a>
-        <a href="/gallery2.html" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2 text-center" onclick="handleNavClick()">Projects</a>
-        <a href="#education" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2 text-center" onclick="handleNavClick()">Education</a>
-        <a href="#contact" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2 text-center" onclick="handleNavClick()">Contact</a>
-      </div>
+  <!-- Mobile Menu (Left-side slide) -->
+  <div id="mobile-menu" class="fixed left-0 top-0 h-screen w-64 bg-white shadow-md p-4 space-y-4 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+    <div class="flex flex-col h-full justify-center">
+      <a href="#about" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">About</a>
+      <a href="/gallery2.html" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">Projects</a>
+      <a href="#education" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">Education</a>
+      <a href="#skills" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">Skills</a>
+      <a href="/contact.html" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">Contact</a>
     </div>
   </div>
+
+  <!-- Backdrop for mobile menu -->
+  <div id="menu-backdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-10 md:hidden" onclick="toggleMenu()"></div>
 </nav>
 
 <script>
-  // Toggle mobile menu
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuContent = mobileMenu.querySelector('div > div');
-  
-  menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    mobileMenu.classList.toggle('opacity-0');
-    mobileMenu.classList.toggle('pointer-events-none');
-    menuContent.classList.toggle('scale-95');
-    document.body.classList.toggle('overflow-hidden');
-  });
-
-  // Close menu when clicking a link or backdrop
-  function handleNavClick() {
-    menuToggle.classList.remove('active');
-    mobileMenu.classList.add('opacity-0');
-    mobileMenu.classList.add('pointer-events-none');
-    menuContent.classList.add('scale-95');
-    document.body.classList.remove('overflow-hidden');
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const backdrop = document.getElementById('menu-backdrop');
+    const hamburger = document.getElementById('hamburger');
+    const close = document.getElementById('close');
+    
+    menu.classList.toggle('translate-x-full');
+    menu.classList.toggle('translate-x-0');
+    backdrop.classList.toggle('hidden');
+    hamburger.classList.toggle('hidden');
+    close.classList.toggle('hidden');
   }
 
-  // Close when clicking outside
-  mobileMenu.addEventListener('click', (e) => {
-    if (e.target === mobileMenu) {
-      handleNavClick();
+  // Auto-close mobile menu when resizing to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      document.getElementById('mobile-menu').classList.add('translate-x-full');
+      document.getElementById('menu-backdrop').classList.add('hidden');
+      document.getElementById('hamburger').classList.remove('hidden');
+      document.getElementById('close').classList.add('hidden');
     }
   });
 </script>
-
-
         <div class="hidden md:flex space-x-8">
           <a href="#about" class="text-sm font-medium hover:text-robot-blue transition-colors">About</a>
           <a href="/gallery2.html" class="text-sm font-medium hover:text-robot-blue transition-colors">Projects</a>
