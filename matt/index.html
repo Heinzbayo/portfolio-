@@ -62,6 +62,7 @@
         </div>
         <nav class="relative">
 
+
 <nav class="relative">
   <!-- Desktop Navigation -->
   <div class="hidden md:flex space-x-8">
@@ -82,13 +83,15 @@
     </button>
   </div>
 
-  <!-- Mobile Menu (Left-side slide) -->
-  <div id="mobile-menu" class="fixed left-0 top-0 h-screen w-64 bg-white shadow-md p-4 space-y-4 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden z-50">
-    <div class="flex flex-col h-full justify-center">
-      <a href="#about" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2" onclick="handleNavClick()">About</a>
-      <a href="/gallery2.html" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2" onclick="handleNavClick()">Projects</a>
-      <a href="#education" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2" onclick="handleNavClick()">Education</a>
-      <a href="#contact" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2" onclick="handleNavClick()">Contact</a>
+  <!-- Mobile Menu (Compact centered overlay) -->
+  <div id="mobile-menu" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
+    <div class="bg-white rounded-lg shadow-xl p-6 w-11/12 max-w-xs transform scale-95 transition-transform duration-300">
+      <div class="space-y-4">
+        <a href="#about" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2 text-center" onclick="handleNavClick()">About</a>
+        <a href="/gallery2.html" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2 text-center" onclick="handleNavClick()">Projects</a>
+        <a href="#education" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2 text-center" onclick="handleNavClick()">Education</a>
+        <a href="#contact" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2 text-center" onclick="handleNavClick()">Contact</a>
+      </div>
     </div>
   </div>
 </nav>
@@ -97,20 +100,33 @@
   // Toggle mobile menu
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
+  const menuContent = mobileMenu.querySelector('div > div');
   
   menuToggle.addEventListener('click', () => {
     menuToggle.classList.toggle('active');
-    mobileMenu.classList.toggle('-translate-x-full');
+    mobileMenu.classList.toggle('opacity-0');
+    mobileMenu.classList.toggle('pointer-events-none');
+    menuContent.classList.toggle('scale-95');
     document.body.classList.toggle('overflow-hidden');
   });
 
-  // Close menu when clicking a link
+  // Close menu when clicking a link or backdrop
   function handleNavClick() {
     menuToggle.classList.remove('active');
-    mobileMenu.classList.add('-translate-x-full');
+    mobileMenu.classList.add('opacity-0');
+    mobileMenu.classList.add('pointer-events-none');
+    menuContent.classList.add('scale-95');
     document.body.classList.remove('overflow-hidden');
   }
+
+  // Close when clicking outside
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) {
+      handleNavClick();
+    }
+  });
 </script>
+
 
         <div class="hidden md:flex space-x-8">
           <a href="#about" class="text-sm font-medium hover:text-robot-blue transition-colors">About</a>
