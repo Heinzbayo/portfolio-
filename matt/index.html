@@ -65,98 +65,21 @@
           <div class="flex items-center">
             <i id="theme-icon" class="fas fa-moon text-robot-blue dark:text-yellow-300"></i>
           </button>
+            <!-- Add this to your HTML where you want the hamburger button -->
+<button id="menu-toggle" class="md:hidden focus:outline-none">
+  <svg id="hamburger-icon" class="w-8 h-8 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+  <svg id="close-icon" class="w-8 h-8 text-gray-900 dark:text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+  </svg>
+</button>
           <a href="#contact" class="md:hidden text-robot-blue">
 <!--             <i class="fas fa-bars text-xl"></i> -->
           </a>
         </div>
        
 
-<!-- Mobile Menu Button (Add to your navigation) -->
-<button 
-  id="menu-toggle" 
-  class="md:hidden text-gray-900 dark:text-white focus:outline-none"
-  aria-label="Toggle menu"
->
-  <!-- Hamburger Icon (visible by default) -->
-  <svg id="hamburger-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-  </svg>
-  
-  <!-- Close Icon (hidden by default) -->
-  <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-  </svg>
-</button>
-
-<!-- Mobile Menu Overlay (Add to your HTML) -->
-<div id="mobile-menu" class="fixed inset-0 z-50 hidden">
-  <!-- Overlay Background -->
-  <div class="absolute inset-0 bg-black bg-opacity-50" onclick="toggleMenu()"></div>
-  
-  <!-- Menu Panel (Slides in from right) -->
-  <div class="absolute right-0 top-0 h-full w-64 bg-white dark:bg-gray-800 shadow-xl transform transition-transform duration-300 ease-in-out">
-    <div class="flex flex-col h-full p-4">
-      <!-- Close Button -->
-      <div class="flex justify-end p-2">
-        <button onclick="toggleMenu()" class="text-gray-900 dark:text-white p-2 focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      
-      <!-- Menu Items -->
-      <nav class="flex-1 flex flex-col justify-center space-y-6 px-4">
-        <a href="#about" onclick="toggleMenu()" class="text-lg font-medium text-gray-900 dark:text-white hover:text-robot-blue transition-colors">About</a>
-        <a href="#projects" onclick="toggleMenu()" class="text-lg font-medium text-gray-900 dark:text-white hover:text-robot-blue transition-colors">Projects</a>
-        <a href="#skills" onclick="toggleMenu()" class="text-lg font-medium text-gray-900 dark:text-white hover:text-robot-blue transition-colors">Skills</a>
-        <a href="#contact" onclick="toggleMenu()" class="text-lg font-medium text-gray-900 dark:text-white hover:text-robot-blue transition-colors">Contact</a>
-      </nav>
-      
-      <!-- Social Links (Optional) -->
-      <div class="p-4 flex justify-center space-x-4">
-        <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-robot-blue transition-colors">
-          <i class="fab fa-github text-xl"></i>
-        </a>
-        <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-robot-blue transition-colors">
-          <i class="fab fa-linkedin text-xl"></i>
-        </a>
-        <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-robot-blue transition-colors">
-          <i class="fab fa-twitter text-xl"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Toggle Mobile Menu Function
-  function toggleMenu() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    const closeIcon = document.getElementById('close-icon');
-    
-    // Toggle visibility
-    mobileMenu.classList.toggle('hidden');
-    hamburgerIcon.classList.toggle('hidden');
-    closeIcon.classList.toggle('hidden');
-    
-    // Prevent body scroll when menu is open
-    document.body.classList.toggle('overflow-hidden');
-  }
-
-  // Close menu when clicking on a link
-  document.querySelectorAll('#mobile-menu a').forEach(link => {
-    link.addEventListener('click', toggleMenu);
-  });
-
-  // Close menu when pressing Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !document.getElementById('mobile-menu').classList.contains('hidden')) {
-      toggleMenu();
-    }
-  });
-</script>
 
         <div class="hidden md:flex space-x-8 text-blue">
           <a href="#about" class="text-sm font-medium hover:text-robot-blue transition-colors">About</a>
