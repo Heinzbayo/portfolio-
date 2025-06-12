@@ -69,13 +69,6 @@
 <!--             <i class="fas fa-bars text-xl"></i> -->
           </a>
         </div>
-                <div class="hidden md:flex space-x-8 text-blue">
-          <a href="#about" class="text-sm font-medium hover:text-robot-blue transition-colors">About</a>
-          <a href="/gallery2.html" class="text-sm font-medium hover:text-robot-blue transition-colors">Projects</a>
-          <a href="#education" class="text-sm font-medium hover:text-robot-blue transition-colors">Education</a>
-          <a href="#skills" class="text-sm font-medium hover:text-robot-blue transition-colors">Skills</a>
-          <a href="/contact.html" class="text-sm font-medium hover:text-robot-blue transition-colors">Contact</a>
-        </div>
        
 <nav class="relative">
  
@@ -101,9 +94,8 @@
   </div>
 
   <!-- Mobile Menu (Left-side slide) -->
- <div id="mobile-menu" class="fixed left-0 top-20 h-screen w-64 bg-white shadow-md p-2 space-y-4 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
-
-<!--     <div class="flex flex-col h-full justify-center"> -->
+  <div id="mobile-menu" class="fixed left-0 top-20 h-screen w-64 bg-#7b7877 shadow-md p-4 space-y-4 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+    <div class="flex flex-col h-full justify-center">
       <a href="#about" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">About</a>
       <a href="#projects" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">Projects</a>
       <a href="#education" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">Education</a>
@@ -111,7 +103,6 @@
       <a href="/contact.html" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">Contact</a>
     </div>
   </div>
-           
 
   <!-- Backdrop for mobile menu -->
   <div id="menu-backdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-10 md:hidden" onclick="toggleMenu()"></div>
@@ -138,11 +129,16 @@
       document.getElementById('menu-backdrop').classList.add('hidden');
       document.getElementById('hamburger').classList.remove('hidden');
       document.getElementById('close').classList.add('hidden');
-     
     }
   });
 </script>
-        
+        <div class="hidden md:flex space-x-8 text-blue">
+          <a href="#about" class="text-sm font-medium hover:text-robot-blue transition-colors">About</a>
+          <a href="/gallery2.html" class="text-sm font-medium hover:text-robot-blue transition-colors">Projects</a>
+          <a href="#education" class="text-sm font-medium hover:text-robot-blue transition-colors">Education</a>
+          <a href="#skills" class="text-sm font-medium hover:text-robot-blue transition-colors">Skills</a>
+          <a href="/contact.html" class="text-sm font-medium hover:text-robot-blue transition-colors">Contact</a>
+        </div>
         
           
         </div>
