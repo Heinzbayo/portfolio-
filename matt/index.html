@@ -70,68 +70,94 @@
           </a>
         </div>
        
-<nav class="relative">
- 
-  <!-- Desktop Navigation -->
-  <div class="hidden md:flex space-x-4">
-    <!-- Desktop links here -->
-  </div>
 
-  <!-- Mobile Hamburger (Centered Right) -->
-  <div class="absolute right-0 top-1/2 transform -translate-y-1/2 md:hidden">
-    <button 
-      id="menu-toggle" 
-      class="text-robot-blue focus:outline-none"
-      onclick="toggleMenu()"
-    >
-      <svg id="hamburger" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-      <svg id="close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-  </div>
+<!-- Mobile Menu Button (Add to your navigation) -->
+<button 
+  id="menu-toggle" 
+  class="md:hidden text-gray-900 dark:text-white focus:outline-none"
+  aria-label="Toggle menu"
+>
+  <!-- Hamburger Icon (visible by default) -->
+  <svg id="hamburger-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+  
+  <!-- Close Icon (hidden by default) -->
+  <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+  </svg>
+</button>
 
-  <!-- Mobile Menu (Left-side slide) -->
-  <div id="mobile-menu" class="fixed left-0 top-20 h-screen w-64 bg-#7b7877 shadow-md p-4 space-y-4 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
-    <div class="flex flex-col h-full justify-center">
-      <a href="#about" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">About</a>
-      <a href="#projects" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">Projects</a>
-      <a href="#education" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">Education</a>
-      <a href="#skills" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">Skills</a>
-      <a href="/contact.html" class="block text-sm font-medium hover:text-robot-blue transition-colors py-2">Contact</a>
+<!-- Mobile Menu Overlay (Add to your HTML) -->
+<div id="mobile-menu" class="fixed inset-0 z-50 hidden">
+  <!-- Overlay Background -->
+  <div class="absolute inset-0 bg-black bg-opacity-50" onclick="toggleMenu()"></div>
+  
+  <!-- Menu Panel (Slides in from right) -->
+  <div class="absolute right-0 top-0 h-full w-64 bg-white dark:bg-gray-800 shadow-xl transform transition-transform duration-300 ease-in-out">
+    <div class="flex flex-col h-full p-4">
+      <!-- Close Button -->
+      <div class="flex justify-end p-2">
+        <button onclick="toggleMenu()" class="text-gray-900 dark:text-white p-2 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Menu Items -->
+      <nav class="flex-1 flex flex-col justify-center space-y-6 px-4">
+        <a href="#about" onclick="toggleMenu()" class="text-lg font-medium text-gray-900 dark:text-white hover:text-robot-blue transition-colors">About</a>
+        <a href="#projects" onclick="toggleMenu()" class="text-lg font-medium text-gray-900 dark:text-white hover:text-robot-blue transition-colors">Projects</a>
+        <a href="#skills" onclick="toggleMenu()" class="text-lg font-medium text-gray-900 dark:text-white hover:text-robot-blue transition-colors">Skills</a>
+        <a href="#contact" onclick="toggleMenu()" class="text-lg font-medium text-gray-900 dark:text-white hover:text-robot-blue transition-colors">Contact</a>
+      </nav>
+      
+      <!-- Social Links (Optional) -->
+      <div class="p-4 flex justify-center space-x-4">
+        <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-robot-blue transition-colors">
+          <i class="fab fa-github text-xl"></i>
+        </a>
+        <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-robot-blue transition-colors">
+          <i class="fab fa-linkedin text-xl"></i>
+        </a>
+        <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-robot-blue transition-colors">
+          <i class="fab fa-twitter text-xl"></i>
+        </a>
+      </div>
     </div>
   </div>
-
-  <!-- Backdrop for mobile menu -->
-  <div id="menu-backdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-10 md:hidden" onclick="toggleMenu()"></div>
-</nav>
+</div>
 
 <script>
+  // Toggle Mobile Menu Function
   function toggleMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const backdrop = document.getElementById('menu-backdrop');
-    const hamburger = document.getElementById('hamburger');
-    const close = document.getElementById('close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
     
-    menu.classList.toggle('translate-x-full');
-    menu.classList.toggle('translate-x-0');
-    backdrop.classList.toggle('hidden');
-    hamburger.classList.toggle('hidden');
-    close.classList.toggle('hidden');
+    // Toggle visibility
+    mobileMenu.classList.toggle('hidden');
+    hamburgerIcon.classList.toggle('hidden');
+    closeIcon.classList.toggle('hidden');
+    
+    // Prevent body scroll when menu is open
+    document.body.classList.toggle('overflow-hidden');
   }
 
-  // Auto-close mobile menu when resizing to desktop
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 768) {
-      document.getElementById('mobile-menu').classList.add('translate-x-full');
-      document.getElementById('menu-backdrop').classList.add('hidden');
-      document.getElementById('hamburger').classList.remove('hidden');
-      document.getElementById('close').classList.add('hidden');
+  // Close menu when clicking on a link
+  document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', toggleMenu);
+  });
+
+  // Close menu when pressing Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !document.getElementById('mobile-menu').classList.contains('hidden')) {
+      toggleMenu();
     }
   });
 </script>
+
         <div class="hidden md:flex space-x-8 text-blue">
           <a href="#about" class="text-sm font-medium hover:text-robot-blue transition-colors">About</a>
           <a href="/gallery2.html" class="text-sm font-medium hover:text-robot-blue transition-colors">Projects</a>
