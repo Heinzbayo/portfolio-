@@ -71,6 +71,7 @@
         </div>
               
 
+
 <!-- Add this to your header/navbar -->
 <button id="menu-toggle" class="md:hidden focus:outline-none ml-auto p-2">
   <svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,20 +81,20 @@
 
 <!-- Mobile Menu (place near end of body) -->
 <div id="mobile-menu" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 transition-opacity duration-300">
-  <div class="absolute right-0 top-0 h-full w-4/5 max-w-sm bg-gray shadow-xl transform transition-transform duration-300 translate-x-full">
+  <div class="absolute right-0 top-0 h-full w-4/5 max-w-sm bg-[#1e88e5] shadow-xl transform transition-transform duration-300 translate-x-full">
     <div class="h-full flex flex-col">
       <div class="p-4 flex justify-end">
         <button id="close-button" class="p-2 focus:outline-none">
-          <svg class="w-6 h-6 text-gray-800"  fill="none" stroke="currentColor" viewBox="0 0 10 10">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
       </div>
       <nav class="flex-1 flex flex-col items-center justify-center space-y-5 px-3">
-        <a href="#about" class="text-xl font-medium hover:text-blue-500 transition-colors">About</a>
-        <a href="#projects" class="text-xl font-medium hover:text-blue-500 transition-colors">Projects</a>
-        <a href="#skills" class="text-xl font-medium hover:text-blue-500 transition-colors">Skills</a>
-        <a href="#contact" class="text-xl font-medium hover:text-blue-500 transition-colors">Contact</a>
+        <a href="#about" class="text-xl font-medium text-white hover:text-blue-200 transition-colors">About</a>
+        <a href="#projects" class="text-xl font-medium text-white hover:text-blue-200 transition-colors">Projects</a>
+        <a href="#skills" class="text-xl font-medium text-white hover:text-blue-200 transition-colors">Skills</a>
+        <a href="#contact" class="text-xl font-medium text-white hover:text-blue-200 transition-colors">Contact</a>
       </nav>
     </div>
   </div>
@@ -103,6 +104,7 @@
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
   const menuPanel = mobileMenu.querySelector('div > div');
+  const closeButton = document.getElementById('close-button');
   
   function toggleMenu() {
     mobileMenu.classList.toggle('hidden');
@@ -117,14 +119,14 @@
   }
   
   menuToggle.addEventListener('click', toggleMenu);
-  document.getElementById('close-button').addEventListener('click', toggleMenu);
+  closeButton.addEventListener('click', toggleMenu);
+  
   mobileMenu.addEventListener('click', function(e) {
     if (e.target === mobileMenu) {
       toggleMenu();
     }
   });
   
-  // Close when clicking nav links
   document.querySelectorAll('#mobile-menu a').forEach(link => {
     link.addEventListener('click', toggleMenu);
   });
