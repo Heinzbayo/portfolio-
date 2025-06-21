@@ -50,32 +50,50 @@
 </head>
   <body style="background-color: #d7d9e4;">
 <!-- <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300"> -->
-   
-<!-- Add this inside your nav element, right after the desktop navigation -->
-<div class="flex items-center md:hidden">
-  <button id="menu-toggle" class="text-gray-900 dark:text-white focus:outline-none">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-    </svg>
-  </button>
-</div>
+  <!-- Navigation -->
+  <nav class="fixed w-full bg-blue/80 dark:bg-gray-800/90 backdrop-blur-lg z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center">
+          <a href="#" class="tech-badge px-4 py-2 bg-robot-blue/10 text-robot-blue rounded-full flex items-center">
+            <i class="fas fa-network-wired mr-2"></i>
+            <span class="text-xl font-bold font-medium hover">Matporfolio</span>
+          </a>
+           <a href="#" class="flex items-center">
+          <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+            <div class="flex items-center space-x-10">
+          <div class="flex items-center">
+            <i id="theme-icon" class="fas fa-moon text-robot-blue dark:text-yellow-300"></i>
+          </button>
+          <a href="#contact" class="md:hidden text-robot-blue">
+<!--             <i class="fas fa-bars text-xl"></i> -->
+          </a>
+        </div>
+              
+
+<!-- Add this to your header/navbar -->
+<button id="menu-toggle" class="md:hidden focus:outline-none ml-auto p-2">
+  <svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+</button>
 
 <!-- Mobile Menu (place near end of body) -->
 <div id="mobile-menu" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 transition-opacity duration-300">
-  <div class="absolute right-0 top-0 h-full w-3/4 max-w-xs bg-white dark:bg-gray-800 shadow-xl transform transition-transform duration-300 translate-x-full">
+  <div class="absolute right-0 top-0 h-full w-4/5 max-w-sm bg-gray shadow-xl transform transition-transform duration-300 translate-x-full">
     <div class="h-full flex flex-col">
       <div class="p-4 flex justify-end">
-        <button id="close-button" class="text-gray-900 dark:text-white focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="close-button" class="p-2 focus:outline-none">
+          <svg class="w-6 h-6 text-gray-800"  fill="none" stroke="currentColor" viewBox="0 0 10 10">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
       </div>
-      <nav class="flex-1 flex flex-col space-y-3 px-6 py-4">
-        <a href="#" class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 py-2 text-base font-medium" onclick="navigate(event, 'home')">Home</a>
-        <a href="#" class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 py-2 text-base font-medium" onclick="navigate(event, 'services')">Services</a>
-        <a href="#" class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 py-2 text-base font-medium" onclick="navigate(event, 'portfolio')">Portfolio</a>
-        <a href="#" class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 py-2 text-base font-medium" onclick="navigate(event, 'about')">About</a>
+      <nav class="flex-1 flex flex-col items-center justify-center space-y-5 px-3">
+        <a href="#about" class="text-xl font-medium hover:text-blue-500 transition-colors">About</a>
+        <a href="#projects" class="text-xl font-medium hover:text-blue-500 transition-colors">Projects</a>
+        <a href="#skills" class="text-xl font-medium hover:text-blue-500 transition-colors">Skills</a>
+        <a href="#contact" class="text-xl font-medium hover:text-blue-500 transition-colors">Contact</a>
       </nav>
     </div>
   </div>
@@ -83,33 +101,49 @@
 
 <script>
   const menuToggle = document.getElementById('menu-toggle');
-  const closeButton = document.getElementById('close-button');
   const mobileMenu = document.getElementById('mobile-menu');
-
-  menuToggle.addEventListener('click', () => {
-    mobileMenu.classList.remove('hidden');
-    setTimeout(() => {
-      mobileMenu.querySelector('div').classList.remove('translate-x-full');
-    }, 20);
-  });
-
-  closeButton.addEventListener('click', () => {
-    mobileMenu.querySelector('div').classList.add('translate-x-full');
-    setTimeout(() => {
-      mobileMenu.classList.add('hidden');
-    }, 300);
-  });
-
-  // Close menu when clicking on a link
-  document.querySelectorAll('#mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.querySelector('div').classList.add('translate-x-full');
+  const menuPanel = mobileMenu.querySelector('div > div');
+  
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+    if (!mobileMenu.classList.contains('hidden')) {
       setTimeout(() => {
-        mobileMenu.classList.add('hidden');
-      }, 300);
-    });
+        menuPanel.classList.remove('translate-x-full');
+      }, 20);
+    } else {
+      menuPanel.classList.add('translate-x-full');
+    }
+    document.body.classList.toggle('overflow-hidden');
+  }
+  
+  menuToggle.addEventListener('click', toggleMenu);
+  document.getElementById('close-button').addEventListener('click', toggleMenu);
+  mobileMenu.addEventListener('click', function(e) {
+    if (e.target === mobileMenu) {
+      toggleMenu();
+    }
+  });
+  
+  // Close when clicking nav links
+  document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', toggleMenu);
   });
 </script>
+
+
+        <div class="hidden md:flex space-x-8 text-blue">
+          <a href="#about" class="text-sm font-medium hover:text-robot-blue transition-colors">About</a>
+          <a href="/gallery2.html" class="text-sm font-medium hover:text-robot-blue transition-colors">Projects</a>
+          <a href="#education" class="text-sm font-medium hover:text-robot-blue transition-colors">Education</a>
+          <a href="#skills" class="text-sm font-medium hover:text-robot-blue transition-colors">Skills</a>
+          <a href="/contact.html" class="text-sm font-medium hover:text-robot-blue transition-colors">Contact</a>
+        </div>
+        
+          
+        </div>
+      </div>
+    </div>
+  </nav>
 
   <!-- Hero Section -->
   <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
